@@ -31,10 +31,12 @@ public class BookingsController {
 		return booking;
 	}
 	@RequestMapping(value="/addBooking",method=RequestMethod.POST)
-	public void addBooking(@RequestBody Booking booking){
-		
+	public ResponseEntity<String> addBooking(@RequestBody Booking booking){
+		if(booking!=null){
 		bookingRepository.save(booking);
-		
+		return ResponseEntity.ok("Booking was saved");
+		}
+		else return (ResponseEntity<String>) ResponseEntity.badRequest();
 	}
 	
 	@RequestMapping(value="/deleteBooking",method=RequestMethod.DELETE)

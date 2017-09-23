@@ -18,9 +18,9 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("/hello")
+	@RequestMapping("/bookings")
 	public String hello(){
-		return "hello";
+		return "bookings";
 	}
 	
 	@RequestMapping("/add")
