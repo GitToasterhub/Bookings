@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+    <head>
+        <title>Hello World!</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/Booking.css"></link>
+        <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	 <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
+	 <style>
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+input[type=submit],[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+
+.container {
+    padding: 16px;
+    background-color:#DCDCDC;
+    max-width: 600px;
+    margin:auto;
+}
+
+.card {
+    background-color:#FFF8DC;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+</style>
+	 
+    </head>
+    <body>
+    
+    <div class="container">
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form action="/logout" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        <form action="/add" method="get">
+            <input type="submit" value="Add"/>
+        </form>
+        <div id="root"></div>
+        </div>
+        
+    <script type="text/babel">
+
+var BookingsList = React.createClass({
+
+  getInitialState: function() {
+    return {
+      bookings: []
+    }
+  },
+
+  componentDidMount: function() {
+    var _this = this;
+    this.serverRequest = 
+      axios
+        .get("/allBookings")
+        .then(function(result) {    
+          _this.setState({
+            bookings: result.data.bookings
+          });
+        })
+  },
+
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
+  },
+
+  render: function() {
+   
+    return (
+
+      <div >
+        <h1>Bookings</h1>
+        {this.state.bookings.map(function(booking) {
+          return (
+            <div  className="card">
+               <p>{booking.roomType}</p>
+              <p>{booking.clientName}:{booking.comment}</p>
+               <p>{booking.startDate}:{booking.endDate}</p>
+                
+              <br></br>
+              <br></br>
+            </div>
+            
+          );
+        })}
+      </div>
+    )
+  }
+});
+      
+      ReactDOM.render(
+       <BookingsList/>,
+        document.getElementById('root')
+      );
+
+    </script>
+    </body>
+</html>
