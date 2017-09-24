@@ -4,7 +4,7 @@
       
     <head>
         <title>Bookings</title>
-    <link type="text/css" rel="stylesheet" href="/static/css/Booking.css"></link>
+    <link type="text/css" rel="stylesheet" href="css/Booking.css"/>
         <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -88,6 +88,9 @@ var BookingsList = React.createClass({
   componentWillUnmount: function() {
     this.serverRequest.abort();
   },
+ handleClick: function(){
+
+},
 
   render: function() {
    
@@ -95,18 +98,19 @@ var BookingsList = React.createClass({
 
       <div >
         <h1>Bookings</h1>
-        {this.state.bookings.map(function(booking) {
+        {this.state.bookings.map(function(booking,i) {
           return (
-            <div  className="card">
-               <p>{booking.roomType}</p>
-              <p>{booking.clientName}:{booking.comment}</p>
-               <p>{booking.startDate}:{booking.endDate}</p>
-                
+            <div  className="card" key="{booking.id}">
+               <p>Room type: {booking.roomType}</p>
+              <p>Order deatils: {booking.clientName}: {booking.comment}</p>
+               <p>From {booking.startDate}: to{booking.endDate}</p>
+               <p>Order id:{booking.id}</p>
               <br></br>
               <br></br>
             </div>
             
           );
+          
         })}
       </div>
     )

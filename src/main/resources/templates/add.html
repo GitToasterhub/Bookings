@@ -59,12 +59,12 @@ var AddForm = React.createClass({
    
     return (
        <div>
-            <form id="form" action="" method="post" >
+            <form id="form" action="/addBooking" method="post" >
             <div><label> Start date : <input type="text" name="startDate"/> </label></div>
             <div><label> End date: <input type="text" name="endDate"/> </label></div>
             
             <div><label> Client's name: <input type="text" name="clientName"/> </label></div>
-            <div><label> Room type: <input type="text" name="roomType"/> </label></div>
+            <div><label> Room type: <input type="text" name="roomType" id="roomType"/> </label></div>
             
             <div><label> Comment: <input type="text" name="comment"/> </label></div>
             <div><input id="submit" type="submit" value="Add new booking"/></div>
@@ -88,12 +88,12 @@ var AddForm = React.createClass({
     $(document).ready(function(){
         // click on button submit
         $("#submit").on('click', function(){
-           
+           alert($("#roomType"));
             $.ajax({
                 url: '/addBooking', 
                 type : "POST", 
                 dataType : 'json', // data type
-                data : $("#form").serialize(), 
+                data : JSON.stringify($("#form").serialize()), 
                 success : function(result) {
                     
                     console.log(result);
