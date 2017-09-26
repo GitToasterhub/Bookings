@@ -1,7 +1,7 @@
 # Answers to questions :
 1.Why I used old-style react instead of new-style ECMA script ?
 I suppose this question was caused by lines of code like var BookingsList = React.createClass,instead of 
-class BookingsList extends React.createClass.   I can't claim that the first version is better or worst just because I haven't 
+class BookingsList extends React.Component .   I can't claim that the first version is better or worst just because I haven't 
 enough experience with it to use, and I am new to react,so I was investigating which way is better, and after reading articles like
 http://blog.krawaller.se/posts/5-reasons-not-to-use-es6-classes-in-react/ I decided to go with first variant just because it
 seemed a bit easier for me to get started with this technology.I suppose that using ES6 style is now conventional,and in my further 
