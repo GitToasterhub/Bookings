@@ -47,7 +47,7 @@ var BookingsList = React.createClass({
               <p>Order deatils: {booking.clientName}: {booking.comment}</p>
                <p>From {booking.startDate}: to{booking.endDate}</p>
                <p>Order id:{booking.id}</p>
-              <button type="button" onclick={this.props.handleDeleteClick.bind(this,booking.id)}>Delete</button>
+              <button type="button" onClick={this.props.handleDeleteClick.bind(this,booking.id)}>Delete</button>
               <br></br>
               <br></br>
             </div>
