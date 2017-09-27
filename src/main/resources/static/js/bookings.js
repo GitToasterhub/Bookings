@@ -48,6 +48,7 @@ var BookingsList = React.createClass({
                <p>From {booking.startDate}: to{booking.endDate}</p>
                <p>Order id:{booking.id}</p>
               <button type="button" onClick={this.props.handleDeleteClick.bind(this,booking.id)}>Delete</button>
+              <a href={'/updateBooking/'+booking.id}></a>
               <br></br>
               <br></br>
             </div>
