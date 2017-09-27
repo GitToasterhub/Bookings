@@ -12,6 +12,7 @@ projects  I would prefer ES6 style
 The reason was tied with spring framework settings.I ran into problems that links from static folder that are normally used to 
 store css and js files to import them for html pages simply didn't worked,and I had a little time run out so I decided not to waste
 time on finding reasons of it.It was fixed and I separated one from another now code looks better.
+(Next commit will include all these changes with files !)
 
 3.What about mixing Jquery and react-dom in add.html file?
 Yes,I truly agree.This is my fail.This was caused because I had my controllers JSON consuming,so I decided to pass form data as a 
