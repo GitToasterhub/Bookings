@@ -16,6 +16,9 @@ import com.example.demo.dto.BookingsDTO;
 import com.example.demo.model.Booking;
 import com.example.demo.repository.BookingRepository;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 
 @RestController
 public class BookingsController {
@@ -50,8 +53,15 @@ public class BookingsController {
 		}
 		else return (ResponseEntity<String>) ResponseEntity.badRequest();
 	}
+	
 	@RequestMapping(value="/deleteBooking/{id}",method=RequestMethod.GET)
 	public void deleteBookingById(@PathVariable Long id){
 		bookingRepository.delete(id);
+	}
+	
+	@RequestMapping(value="/updateBooking/{id}",method=RequestMethod.GET)
+	public void updateBookingById(@PathVariable Long id,HttpServletResponse response){
+		response.addCookie(new Cookie("id", Long.toString(id)));
+		return "update";
 	}
 }
