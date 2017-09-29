@@ -42,7 +42,7 @@ var BookingsList = React.createClass({
         <h1>Bookings</h1>
         {this.state.bookings.map(function(booking,i) {
           return (
-            <div  className="card" key="{booking.id}">
+            <div  className="card" key={booking.id}>
                <p>Room type: {booking.roomType}</p>
               <p>Order deatils: {booking.clientName}: {booking.comment}</p>
                <p>From {booking.startDate}: to{booking.endDate}</p>
