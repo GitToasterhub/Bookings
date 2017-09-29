@@ -25,7 +25,7 @@ var BookingsList = React.createClass({
  handleDeleteClick: function(id){
   this.serverRequest = 
       axios
-        .get("/deleteBooking"+id)
+        .get("/deleteBooking/"+id)
         .then(function (response) {
             console.log("An item was deleted");
         })
